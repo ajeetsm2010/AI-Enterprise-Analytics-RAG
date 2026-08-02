@@ -105,6 +105,8 @@ uploaded_file = st.sidebar.file_uploader(
 # Database Connection Setup (In-Memory SQLite)
 conn = sqlite3.connect(":memory:", check_same_thread=False)
 
+dash_df = None
+
 if uploaded_file is not None:
     try:
         file_name = uploaded_file.name
@@ -200,9 +202,15 @@ user_query = st.chat_input("Ask a question about your data (e.g., 'Which store h
 if user_query:
     st.markdown(f"### 💬 Question: *\"{user_query}\"*")
     
-    # 1. Generate SQL Query using LLM Engine
+    # 1. Dynamic Schema Extraction & SQL Query Generation
     with st.spinner("Generating SQL query..."):
-        schema_info = "store_id, store_name, city, locality, capacity, latitude, longitude"
+        if dash_df is not None:
+            schema_info = "\n".join(
+                [f"{col} ({dash_df[col].dtype})" for col in dash_df.columns]
+            )
+        else:
+            schema_info = "store_id, store_name, city, locality, capacity, latitude, longitude"
+            
         sql_query = generate_sql(user_query, schema=schema_info)
     
     # Display Generated SQL

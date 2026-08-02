@@ -6,28 +6,47 @@ load_dotenv()
 
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 
+MODEL = "deepseek/deepseek-chat-v3-0324:free"
 
-def generate_sql(question, schema=None):
-    if not question:
-        return "SELECT * FROM uploaded_data LIMIT 10;"
+def generate_sql(question, schema):
 
-    q_lower = question.lower()
+    prompt = f"""
+You are an expert SQLite SQL generator.
 
-    # 1. MINIMUM / LOWEST CAPACITY RULE
-    if "minimum" in q_lower or "lowest" in q_lower or "min" in q_lower:
-        return "SELECT store_name, city, locality, capacity FROM uploaded_data ORDER BY capacity ASC LIMIT 1;"
+Table name: uploaded_data
 
-    # 2. MAXIMUM / HIGHEST CAPACITY RULE
-    if "maximum" in q_lower or "highest" in q_lower or "max" in q_lower:
-        return "SELECT store_name, city, locality, capacity FROM uploaded_data ORDER BY capacity DESC LIMIT 1;"
+Columns:
+{schema}
 
-    # 3. COUNT / TOTAL RULE
-    if "how many" in q_lower or "count" in q_lower or "total stores" in q_lower:
-        return "SELECT COUNT(*) AS total_rows FROM uploaded_data;"
+Rules:
+- Return ONLY SQL.
+- No markdown.
+- No explanation.
+- SQLite syntax only.
+- Use uploaded_data table.
 
-    # 4. CITY LIST RULE
-    if "list all cities" in q_lower or "name the cities" in q_lower or "unique cities" in q_lower:
-        return "SELECT DISTINCT city FROM uploaded_data ORDER BY city;"
+Question:
+{question}
+"""
 
-    # Default Fallback
-    return "SELECT * FROM uploaded_data LIMIT 10;"
+    response = requests.post(
+        "https://openrouter.ai/api/v1/chat/completions",
+        headers={
+            "Authorization": f"Bearer {API_KEY}",
+            "Content-Type": "application/json",
+        },
+        json={
+            "model": MODEL,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
+        },
+        timeout=60
+    )
+
+    result = response.json()
+
+    return result["choices"][0]["message"]["content"].strip()
