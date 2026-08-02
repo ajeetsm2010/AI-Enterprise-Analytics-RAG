@@ -1,4 +1,10 @@
+![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-Live-FF4B4B?logo=streamlit)
+![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite)
+![OpenRouter](https://img.shields.io/badge/OpenRouter-LLM-7B61FF)
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success?logo=streamlit)](https://ai-enterprise-analytics-rag.streamlit.app/)
+[![YouTube Demo](https://img.shields.io/badge/YouTube-Demo-red?logo=youtube)](https://youtu.be/SJxwuIP8Jlg)
 
 # 📊 Enterprise AI Analytics & RAG Platform
 
@@ -26,16 +32,16 @@ https://youtu.be/SJxwuIP8Jlg
 
 ## ✨ Features
 
-- Upload CSV and Excel datasets
-- AI-powered Natural Language to SQL
-- Dynamic SQLite Query Execution
-- Interactive Plotly Charts
-- KPI Dashboard
-- Business Insights
-- CSV Export
-- PDF Report Export
-- Live Deployment
----
+- Upload CSV, XLSX and XLS datasets
+- Natural Language to SQL using DeepSeek AI
+- Automatic SQLite database creation
+- AI-generated SQL queries
+- Interactive Plotly dashboards
+- KPI summary cards
+- Dynamic business insights
+- CSV export
+- PDF report export
+- Live deployment on Streamlit Cloud
 
 ## 🛠 Tech Stack
 
@@ -45,9 +51,10 @@ https://youtu.be/SJxwuIP8Jlg
 - Pandas
 - Plotly
 - OpenRouter API
-- SQL
+- DeepSeek Chat
+- LangChain
+- FAISS
 - Git & GitHub
-
 ---
 
 ## 📂 Project Structure
@@ -73,21 +80,30 @@ AI-Enterprise-Analytics-RAG/
 
 ## 🏗️ Architecture
 
+```text
 User
-↓
+   │
+   ▼
 Streamlit UI
-↓
-OpenRouter LLM
-↓
+   │
+   ▼
+OpenRouter (DeepSeek)
+   │
+   ▼
 SQL Generator
-↓
+   │
+   ▼
 SQLite Database
-↓
-Plotly Visualization
-↓
+   │
+   ▼
+Plotly Visualizations
+   │
+   ▼
 Business Insights
-↓
-PDF / CSV Export
+   │
+   ▼
+CSV / PDF Export
+```
 
 ## ⚙ Installation
 
@@ -138,29 +154,29 @@ streamlit run app.py
 
 ---
 
-## 📸 Screenshots
-
-Coming Soon
-
----
 
 ## 🔮 Future Enhancements
 
-- GPT-powered SQL generation
-- Multi-table querying
-- Authentication
-- Dashboard export
-- PDF report generation
-- RAG document search
-
+- Multi-table SQL support
+- Conversational memory
+- Authentication & user login
+- Dashboard sharing
+- Advanced RAG document search
+- Cloud database support
 ---
 
 ## 👨‍💻 Author
 
 **Ajeet Yadav**
 
-LinkedIn:
-(Add your LinkedIn)
+GitHub:
+https://github.com/ajeetsm2010
+
+Live App:
+https://ai-enterprise-analytics-rag.streamlit.app/
+
+Demo:
+https://youtu.be/SJxwuIP8Jlg
 
 GitHub:
 https://github.com/ajeetsm2010
