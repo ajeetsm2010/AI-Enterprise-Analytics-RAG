@@ -61,6 +61,24 @@ AI-Enterprise-Analytics-RAG/
 
 ---
 
+## 🏗️ Architecture
+
+User
+↓
+Streamlit UI
+↓
+OpenRouter LLM
+↓
+SQL Generator
+↓
+SQLite Database
+↓
+Plotly Visualization
+↓
+Business Insights
+↓
+PDF / CSV Export
+
 ## ⚙ Installation
 
 Clone the repository
