@@ -16,16 +16,17 @@ Watch the complete working demo here:
 
 https://youtu.be/SJxwuIP8Jlg
 
-## 🚀 Features
+## ✨ Features
 
-- 📂 Upload CSV and Excel datasets
-- 🤖 Natural Language to SQL generation
-- 🗄️ Dynamic SQLite query execution
-- 📊 Interactive Plotly visualizations
-- 💡 AI-generated business insights
-- ⚡ KPI dashboard
-- 🎯 Streamlit web interface
-
+- Upload CSV and Excel datasets
+- AI-powered Natural Language to SQL
+- Dynamic SQLite Query Execution
+- Interactive Plotly Charts
+- KPI Dashboard
+- Business Insights
+- CSV Export
+- PDF Report Export
+- Live Deployment
 ---
 
 ## 🛠 Tech Stack
