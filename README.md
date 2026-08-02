@@ -1,12 +1,21 @@
+<p align="center">
+
 ![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Live-FF4B4B?logo=streamlit)
 ![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite)
 ![OpenRouter](https://img.shields.io/badge/OpenRouter-LLM-7B61FF)
+![Plotly](https://img.shields.io/badge/Plotly-Visualization-3F4F75?logo=plotly)
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-success?logo=streamlit)](https://ai-enterprise-analytics-rag.streamlit.app/)
-[![YouTube Demo](https://img.shields.io/badge/YouTube-Demo-red?logo=youtube)](https://youtu.be/SJxwuIP8Jlg)
+[![Live Demo](https://img.shields.io/badge/🚀-Live_Demo-success)](https://ai-enterprise-analytics-rag.streamlit.app/)
+[![YouTube Demo](https://img.shields.io/badge/🎥-Demo-red)](https://youtu.be/SJxwuIP8Jlg)
 
-# 📊 Enterprise AI Analytics & RAG Platform
+</p>
+
+<h1 align="center">📊 Enterprise AI Analytics & RAG Platform</h1>
+
+<p align="center">
+AI-powered analytics platform that converts natural language into SQL queries, executes them on uploaded business datasets, and generates interactive dashboards with business insights.
+</p>
 
 An AI-powered analytics platform that converts natural language questions into SQL queries, executes them on uploaded business datasets, and generates interactive visualizations with actionable business insights.
 
@@ -14,7 +23,9 @@ An AI-powered analytics platform that converts natural language questions into S
 
 ## 📸 Application Preview
 
-![Enterprise AI Analytics & RAG Platform](project-overview.png)
+<p align="center">
+<img src="project-overview.png" width="900">
+</p>
 
 ---
 
@@ -81,28 +92,28 @@ AI-Enterprise-Analytics-RAG/
 ## 🏗️ Architecture
 
 ```text
-User
-   │
-   ▼
-Streamlit UI
-   │
-   ▼
-OpenRouter (DeepSeek)
-   │
-   ▼
-SQL Generator
-   │
-   ▼
-SQLite Database
-   │
-   ▼
-Plotly Visualizations
-   │
-   ▼
-Business Insights
-   │
-   ▼
-CSV / PDF Export
+            User Question
+                  │
+                  ▼
+           Streamlit UI
+                  │
+                  ▼
+       OpenRouter (DeepSeek)
+                  │
+                  ▼
+          SQL Generator
+                  │
+                  ▼
+          SQLite Database
+                  │
+                  ▼
+      Plotly Visualizations
+                  │
+                  ▼
+        Business Insights
+                  │
+                  ▼
+        CSV / PDF Export
 ```
 
 ## ⚙ Installation
@@ -165,18 +176,25 @@ streamlit run app.py
 - Cloud database support
 ---
 
+---
+
+## ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
+
+---
+
 ## 👨‍💻 Author
 
 **Ajeet Yadav**
 
-GitHub:
-https://github.com/ajeetsm2010
+GitHub: https://github.com/ajeetsm2010
 
 Live App:
 https://ai-enterprise-analytics-rag.streamlit.app/
 
-Demo:
+Demo Video:
 https://youtu.be/SJxwuIP8Jlg
 
-GitHub:
+
 https://github.com/ajeetsm2010
