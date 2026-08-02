@@ -1,6 +1,14 @@
+
+
 # 📊 Enterprise AI Analytics & RAG Platform
 
 An AI-powered analytics platform that converts natural language questions into SQL queries, executes them on uploaded business datasets, and generates interactive visualizations with actionable business insights.
+
+---
+
+## 📸 Application Preview
+
+![Enterprise AI Analytics & RAG Platform](project-overview.png)
 
 ---
 
