@@ -8,7 +8,8 @@ load_dotenv()
 # Get API Key from Streamlit Secrets (for Cloud) or Environment (for Local)
 API_KEY = st.secrets.get("OPENROUTER_API_KEY") or os.getenv("OPENROUTER_API_KEY")
 
-MODEL = "deepseek/deepseek-chat-v3-0324:free"
+# Updated Free Model Slug (Active & Reliable on OpenRouter)
+MODEL = "meta-llama/llama-3.3-70b-instruct:free"
 
 def generate_sql(question, schema):
     if not API_KEY:
@@ -25,9 +26,9 @@ Columns:
 
 Rules:
 - Return ONLY SQL.
-- No markdown.
-- No explanation.
-- SQLite syntax only.
+- No markdown formatting (do not use ```sql or ```).
+- No explanation or conversational text.
+- Valid SQLite syntax only.
 - Use uploaded_data table.
 
 Question:
@@ -61,7 +62,10 @@ Question:
             return ""
 
         if "choices" in result and len(result["choices"]) > 0:
-            return result["choices"][0]["message"]["content"].strip()
+            sql_clean = result["choices"][0]["message"]["content"].strip()
+            # Remove any accidental markdown backticks if returned
+            sql_clean = sql_clean.replace("```sql", "").replace("```", "").strip()
+            return sql_clean
         else:
             st.error(f"Unexpected response format from API: {result}")
             return ""
