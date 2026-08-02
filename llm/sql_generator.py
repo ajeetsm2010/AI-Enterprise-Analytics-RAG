@@ -8,8 +8,8 @@ load_dotenv()
 # Get API Key from Streamlit Secrets (for Cloud) or Environment (for Local)
 API_KEY = st.secrets.get("OPENROUTER_API_KEY") or os.getenv("OPENROUTER_API_KEY")
 
-# Updated Free Model Slug (Active & Reliable on OpenRouter)
-MODEL = "meta-llama/llama-3.3-70b-instruct:free"
+# Reliable Free Model Slug on OpenRouter for SQL Generation
+MODEL = "google/gemma-2-9b-it:free"
 
 def generate_sql(question, schema):
     if not API_KEY:
