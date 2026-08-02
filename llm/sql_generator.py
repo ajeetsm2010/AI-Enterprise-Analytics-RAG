@@ -1,10 +1,11 @@
 import os
 import requests
+import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv("OPENROUTER_API_KEY")
+API_KEY = os.getenv("OPENROUTER_API_KEY") or st.secrets.get("OPENROUTER_API_KEY")
 
 MODEL = "deepseek/deepseek-chat-v3-0324:free"
 
@@ -20,10 +21,8 @@ Columns:
 
 Rules:
 - Return ONLY SQL.
-- No markdown.
-- No explanation.
 - SQLite syntax only.
-- Use uploaded_data table.
+- No markdown.
 
 Question:
 {question}
@@ -48,5 +47,11 @@ Question:
     )
 
     result = response.json()
+
+    st.write(result)   # <-- IMPORTANT
+
+    if "choices" not in result:
+        st.error(result)
+        return "SELECT * FROM uploaded_data LIMIT 5;"
 
     return result["choices"][0]["message"]["content"].strip()
