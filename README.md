@@ -38,6 +38,7 @@ https://youtu.be/SJxwuIP8Jlg
 - Plotly
 - OpenRouter API
 - SQL
+- Git & GitHub
 
 ---
 
