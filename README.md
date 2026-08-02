@@ -4,6 +4,12 @@ An AI-powered analytics platform that converts natural language questions into S
 
 ---
 
+## 🌐 Live Demo
+
+**Try the application here:**
+
+https://ai-enterprise-analytics-rag.streamlit.app/
+
 ## 🚀 Features
 
 - 📂 Upload CSV and Excel datasets
