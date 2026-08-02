@@ -18,20 +18,70 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS for UI polish
+# Custom CSS for Professional UI Polish
 st.markdown("""
 <style>
-    .main-header {
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: #1E293B;
-        margin-bottom: 0.5rem;
-    }
-    .sub-header {
-        font-size: 1rem;
-        color: #64748B;
-        margin-bottom: 2rem;
-    }
+
+/* Main App */
+.main {
+    background-color: #F8FAFC;
+}
+
+/* Header */
+.main-header{
+    font-size:42px;
+    font-weight:800;
+    color:#2563EB;
+    margin-bottom:0px;
+}
+
+.sub-header{
+    color:#64748B;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+/* KPI Cards */
+div[data-testid="metric-container"]{
+    background:white;
+    border:1px solid #E2E8F0;
+    padding:20px;
+    border-radius:14px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+/* Dataframe */
+[data-testid="stDataFrame"]{
+    border-radius:12px;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"]{
+    background:#0F172A;
+}
+
+section[data-testid="stSidebar"] *{
+    color:white;
+}
+
+/* Buttons */
+.stButton>button{
+    background:#2563EB;
+    color:white;
+    border:none;
+    border-radius:8px;
+}
+
+.stButton>button:hover{
+    background:#1D4ED8;
+}
+
+/* Chat */
+.stChatMessage{
+    border-radius:10px;
+    padding:10px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -39,8 +89,11 @@ st.markdown("""
 st.markdown('<div class="main-header">📊 Enterprise AI Analytics & RAG Platform</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-header">Ask natural language questions to analyze database records, run dynamic SQL, and generate instant business insights.</div>', unsafe_allow_html=True)
 
-# Sidebar - Database & File Upload Setup
-st.sidebar.header("📁 Data Management")
+# Sidebar Branding & File Upload Setup
+st.sidebar.markdown("# 📊 Enterprise AI")
+st.sidebar.caption("Business Analytics Platform")
+st.sidebar.divider()
+
 uploaded_file = st.sidebar.file_uploader(
     "📂 Upload Business File", 
     type=["csv", "xlsx", "xls"]
@@ -163,9 +216,27 @@ if user_query:
             else:
                 if "capacity" in df.columns:
                     max_val = df["capacity"].max()
-                    st.info(f"**Operational Note:** Output dataset highlights store capacity ranging up to **{max_val:,} units**. Focus resources on higher capacity fulfillment hubs to optimize regional supply chain efficiency.")
+                    st.success(
+                        f"""
+### 📌 Business Insight
+
+Maximum Store Capacity:
+
+**{max_val:,} Units**
+
+Recommendation:
+
+Prioritize inventory allocation and workforce planning for high-capacity fulfillment centers.
+"""
+                    )
                 else:
                     st.info("The query successfully extracted targeted records from the database. Use these aggregated data points for operational planning and resource distribution.")
                     
         except Exception as e:
             st.error(f"❌ SQL Execution Error: {e}")
+
+# Footer
+st.divider()
+st.caption(
+    "Built with ❤️ using Python • Streamlit • SQLite • Plotly"
+)
