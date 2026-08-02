@@ -17,7 +17,6 @@
 AI-powered analytics platform that converts natural language into SQL queries, executes them on uploaded business datasets, and generates interactive dashboards with business insights.
 </p>
 
-An AI-powered analytics platform that converts natural language questions into SQL queries, executes them on uploaded business datasets, and generates interactive visualizations with actionable business insights.
 
 ---
 
