@@ -8,8 +8,8 @@ load_dotenv()
 # Get API Key from Streamlit Secrets (for Cloud) or Environment (for Local)
 API_KEY = st.secrets.get("OPENROUTER_API_KEY") or os.getenv("OPENROUTER_API_KEY")
 
-# Reliable Free Model Slug on OpenRouter for SQL Generation
-MODEL = "google/gemma-2-9b-it:free"
+# Official OpenRouter Free Router (Auto-selects active free model)
+MODEL = "openrouter/free"
 
 def generate_sql(question, schema):
     if not API_KEY:
@@ -25,7 +25,7 @@ Columns:
 {schema}
 
 Rules:
-- Return ONLY SQL.
+- Return ONLY valid SQL query.
 - No markdown formatting (do not use ```sql or ```).
 - No explanation or conversational text.
 - Valid SQLite syntax only.
