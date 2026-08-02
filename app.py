@@ -4,6 +4,9 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 from dotenv import load_dotenv
+from io import BytesIO
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.lib import colors
 
 # Local module imports
 from llm.sql_generator import generate_sql
@@ -164,6 +167,33 @@ if uploaded_file is not None:
 else:
     st.info("👈 Please upload a business data file (e.g., `Stores.csv`) from the sidebar to begin analysis.")
 
+# PDF Generator Helper Function
+def generate_pdf(dataframe):
+    buffer = BytesIO()
+
+    doc = SimpleDocTemplate(buffer)
+    elements = []
+
+    table_data = [list(dataframe.columns)] + dataframe.values.tolist()
+
+    table = Table(table_data)
+
+    table.setStyle(TableStyle([
+        ("BACKGROUND", (0,0), (-1,0), colors.grey),
+        ("TEXTCOLOR",(0,0),(-1,0),colors.whitesmoke),
+        ("GRID",(0,0),(-1,-1),1,colors.black),
+        ("BACKGROUND",(0,1),(-1,-1),colors.beige),
+        ("FONTSIZE",(0,0),(-1,-1),8)
+    ]))
+
+    elements.append(table)
+    doc.build(elements)
+
+    pdf = buffer.getvalue()
+    buffer.close()
+
+    return pdf
+
 # Main Query Interface
 user_query = st.chat_input("Ask a question about your data (e.g., 'Which store has the maximum capacity?')...")
 
@@ -187,14 +217,29 @@ if user_query:
             st.subheader("📊 Query Results")
             st.dataframe(df, use_container_width=True)
             
-            # Download Results as CSV
-            csv = df.to_csv(index=False).encode("utf-8")
-            st.download_button(
-                label="📥 Download Results (CSV)",
-                data=csv,
-                file_name="query_results.csv",
-                mime="text/csv"
-            )
+            # Download Buttons (CSV & PDF)
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                csv = df.to_csv(index=False).encode("utf-8")
+                st.download_button(
+                    label="📥 Download Results (CSV)",
+                    data=csv,
+                    file_name="query_results.csv",
+                    mime="text/csv",
+                    use_container_width=True
+                )
+                
+            with col2:
+                if not df.empty:
+                    pdf = generate_pdf(df)
+                    st.download_button(
+                        label="📄 Download Report (PDF)",
+                        data=pdf,
+                        file_name="query_report.pdf",
+                        mime="application/pdf",
+                        use_container_width=True
+                    )
             
             # ===============================================
             # 📈 AUTO CHARTS FEATURE (PLOTLY)
@@ -247,5 +292,5 @@ Prioritize inventory allocation and workforce planning for high-capacity fulfill
 # Footer
 st.divider()
 st.caption(
-    "Built with ❤️ using Python • Streamlit • SQLite • Plotly"
+    "Built with ❤️ using Python • Streamlit • SQLite • Plotly • ReportLab"
 )
